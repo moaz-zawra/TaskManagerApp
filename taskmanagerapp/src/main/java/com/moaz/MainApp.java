@@ -1,7 +1,21 @@
 package com.moaz;
 
-public class MainApp {
+import javafx.application.Application; // Import the JavaFX Application class
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage; // Import the JavaFX Stage class
+import javafx.scene.Group; // Import the JavaFX Group class
+import javafx.scene.Parent;
+import javafx.scene.Scene; // Import the JavaFX Scene class
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+
+public class MainApp extends Application {
     public static void main(String[] args) {
+
+        launch();
+
         // Create a TaskManager object
         TaskManager taskManager = new TaskManager();
 
@@ -34,6 +48,25 @@ public class MainApp {
 
         // Load the user's data from the save file
         taskManager.loadData();
+    }
 
+    @Override
+    public void start(Stage stage) throws Exception {
+
+        Parent root = FXMLLoader.load(getClass().getResource("mainView.fxml"));
+        // Group root = new Group();
+        Scene scene = new Scene(root, 800, 600, Color.LAVENDER);
+
+        stage.setTitle("Task Manager App");
+
+        Text text = new Text();
+        text.setText("Hello, World!");
+        text.setX(50);
+        text.setY(50);
+        text.setFont(Font.font("Verdana", 36));
+
+        // root.getChildren().add(text);
+        stage.setScene(scene);
+        stage.show();
     }
 }

@@ -1,0 +1,13 @@
+[ {
+  "id" : 0,
+  "title" : "Work on Java Project",
+  "description" : "Finish working on the app core login",
+  "category" : "Work",
+  "isCompleted" : false
+}, {
+  "id" : 1,
+  "title" : "Become a better person",
+  "description" : "Pray",
+  "category" : "Religion",
+  "isCompleted" : false
+} ]
