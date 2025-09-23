@@ -13,42 +13,24 @@ public class TaskManager {
         taskList.add(task);
     }
 
-    // Remove a task from the taskList given its id
-    public void removeTask(int id) {
-        // Safety check:
-        if (id < 0 || id >= taskList.size())
-            System.out.println("Invalid Task ID");
-        else
-            taskList.remove(id);
+    // Remove a given task from the taskList
+    public void removeTask(Task task) {
+        taskList.remove(task);
     }
 
-    // Update an existing task given its id with a new title
-    public void updateTask(int id, String newTitle) {
-        // Safety check:
-        if (id < 0 || id >= taskList.size())
-            System.out.println("Invalid Task ID");
-        else {
-            Task taskObj = taskList.get(id);
-            taskObj.setTitle(newTitle);
-        }
+    // Update an existing task with a new title
+    public void updateTask(Task task, String newTitle) {
+        task.setTitle(newTitle);
     }
 
-    // Mark a task as 'completed' given its id
-    public void markComplete(int id) {
-        // Safety check:
-        if (id < 0 || id >= taskList.size())
-            System.out.println("Invalid Task ID");
-        else {
-            Task taskObj = taskList.get(id);
-            taskObj.setIsCompleted();
-        }
+    // Mark a given task as 'completed'
+    public void markComplete(Task task) {
+        task.setIsCompleted();
     }
 
-    // Retrieve each task in the taskList and display it
-    public void getAllTasks() {
-        for (int i = 0; i < taskList.size(); i++) {
-            taskList.get(i).getTaskDetails();
-        }
+    // Retrieve each task in the taskList
+    public List<Task> getAllTasks() {
+        return taskList;
     }
 
     // Save a copy of all the user's tasks to the save file

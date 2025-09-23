@@ -17,11 +17,7 @@ public class MainApp extends Application {
         launch();
 
         // Create a TaskManager object
-        TaskManager taskManager = new TaskManager();
-
-        // Create, initialize, and load two tasks using the taskmanager
-        taskManager.addTask(new Task(0, "Work on Java Project", "Finish working on the app core login", "Work"));
-        taskManager.addTask(new Task(1, "Become a better person", "Pray", "Religion"));
+        /* TaskManager taskManager = new TaskManager(); */
 
         /*
          * // Get all tasks from the taskList
@@ -43,29 +39,21 @@ public class MainApp extends Application {
          * taskManager.getAllTasks();
          */
 
-        // Save the user's task data in an external save file
-        taskManager.saveData();
-
-        // Load the user's data from the save file
-        taskManager.loadData();
+        /*
+         * // Save the user's task data in an external save file
+         * taskManager.saveData();
+         * 
+         * // Load the user's data from the save file
+         * taskManager.loadData();
+         */
     }
 
     @Override
     public void start(Stage stage) throws Exception {
 
         Parent root = FXMLLoader.load(getClass().getResource("mainView.fxml"));
-        // Group root = new Group();
-        Scene scene = new Scene(root, 800, 600, Color.LAVENDER);
-
         stage.setTitle("Task Manager App");
-
-        Text text = new Text();
-        text.setText("Hello, World!");
-        text.setX(50);
-        text.setY(50);
-        text.setFont(Font.font("Verdana", 36));
-
-        // root.getChildren().add(text);
+        Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.show();
     }
