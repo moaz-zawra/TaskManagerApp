@@ -48,11 +48,12 @@ public class TaskManager {
     }
 
     // Load the user's data from the save file
-    public void loadData() {
+    public List<Task> loadData() {
         // Initialize a FileHandler object called fileHandler
         FileHandler fileHandler = new FileHandler();
         // Call the loadToFile method using the FileHandler object
-        fileHandler.loadFromFile();
+        List<Task> taskList = fileHandler.loadFromFile();
+        return taskList;
     }
 
 }

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import java.util.ArrayList;
 import java.util.List; // Import the List class
 
 public class FileHandler {
@@ -35,7 +36,7 @@ public class FileHandler {
     }
 
     // Load data:
-    public void loadFromFile() {
+    public List<Task> loadFromFile() {
         // Create an ObjectMapper object called mapper
         ObjectMapper mapper = new ObjectMapper();
 
@@ -49,13 +50,12 @@ public class FileHandler {
             List<Task> taskList = mapper.readValue(saveFile, new TypeReference<List<Task>>() {
             });
 
-            // Display the loaded content
-            for (Task task : taskList) {
-                task.getTaskDetails();
-            }
+            return taskList;
         } catch (IOException e) { // Catch any errors during the operation and print the error
             e.printStackTrace();
         }
+        // Return an empty list if loading fails
+        return new ArrayList<>();
     }
 
 }

@@ -3,13 +3,8 @@ package com.moaz;
 import javafx.application.Application; // Import the JavaFX Application class
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage; // Import the JavaFX Stage class
-import javafx.scene.Group; // Import the JavaFX Group class
 import javafx.scene.Parent;
 import javafx.scene.Scene; // Import the JavaFX Scene class
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 public class MainApp extends Application {
     public static void main(String[] args) {
