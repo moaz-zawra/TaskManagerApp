@@ -1,11 +1,6 @@
 [ {
-  "title" : "Work on Java Project",
-  "description" : "Finish working on the app core login",
-  "category" : "Work",
-  "isCompleted" : false
-}, {
-  "title" : "Become a better person",
-  "description" : "Pray",
-  "category" : "Religion",
-  "isCompleted" : false
+  "title" : "xxx",
+  "description" : "xxx - hello",
+  "category" : "xxx",
+  "isCompleted" : true
 } ]

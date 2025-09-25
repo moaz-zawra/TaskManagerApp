@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 public class TaskDialogController {
     // FXML variable for the text fields
     @FXML
-    private TextField titleField, descriptionField;
+    private TextField titleField, descriptionField, categoryField;
 
     private Stage dialogStage; // Stage object representing the popup dialog box
     private Task task; // Task object to invoke operations from the Task class
@@ -24,6 +24,7 @@ public class TaskDialogController {
 
         titleField.setText(task.getTitle());
         descriptionField.setText(task.getDescription());
+        categoryField.setText(task.getCategory());
     }
 
     public boolean isSaveClicked() {
@@ -35,6 +36,7 @@ public class TaskDialogController {
         // Save user input into the task
         task.setTitle(titleField.getText());
         task.setDescription(descriptionField.getText());
+        task.setCategory(categoryField.getText());
         saveClicked = true;
         dialogStage.close();
     }

@@ -1,6 +1,7 @@
 package com.moaz;
 
 import java.io.IOException;
+import java.time.Instant;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -15,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -47,46 +49,33 @@ public class MainController {
     @FXML
     private Button addTaskButton, editTaskButton, deleteTaskButton, completeTaskButton;
 
-    // Observable list for tasks - for dynamic task data display in UI
-    private ObservableList<Task> taskList = FXCollections.observableArrayList();
     // Create a TaskManager object
     private TaskManager taskManager = new TaskManager();
-    // Variable to keep track of completed tasks
-    private int completedTasks = 0;
 
     // Initialization
     @FXML
     public void initialize() {
         // Link columns to task fields
-        idColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(taskList.indexOf(cellData.getValue())));
+        idColumn.setCellValueFactory(
+                cellData -> new ReadOnlyObjectWrapper<>(taskManager.getTaskList().indexOf(cellData.getValue())));
         titleColumn.setCellValueFactory(cellData -> cellData.getValue().titleProperty());
         descriptionColumn.setCellValueFactory(cellData -> cellData.getValue().descriptionProperty());
         categoryColumn.setCellValueFactory(cellData -> cellData.getValue().categoryProperty());
         completedColumn.setCellValueFactory(cellData -> cellData.getValue().isCompletedProperty());
-
-        // Bind the observable list to the table
-        taskTable.setItems(taskList);
-
-        // Save sample demo data
-        saveSampleData();
+        completedColumn.setCellFactory(tc -> new CheckBoxTableCell<>());
 
         // Load saved user data, if any, through the taskmanager and then add it to the
         // ObservableList
-        taskList.addAll(taskManager.loadData());
+        taskManager.getTaskList().addAll(taskManager.loadData());
+
+        // Bind the observable list to the table
+        taskTable.setItems(taskManager.getTaskList());
 
         // Display total tasks through the totalTasksLabel
         updateTotalTasks();
 
         // Display total completed tasks through the completedTasksLabel
         updateCompletedTasks();
-    }
-
-    private void saveSampleData() {
-        // Create, initialize, and load two tasks using the taskmanager
-        taskManager.addTask(new Task("Work on Java Project", "Finish working on the app core login", "Work"));
-        taskManager.addTask(new Task("Become a better person", "Pray", "Religion"));
-
-        taskManager.saveData();
     }
 
     @FXML
@@ -97,7 +86,6 @@ public class MainController {
         boolean saveClicked = showTaskDialog(newTask);
         if (saveClicked) {
             taskManager.addTask(newTask);
-            taskList.add(newTask);
             updateTotalTasks();
         }
         System.out.println("Add Task button clicked!");
@@ -105,11 +93,14 @@ public class MainController {
 
     @FXML
     private void onEditTask() {
+        // Store the user selected task to be edited
         Task selected = taskTable.getSelectionModel().getSelectedItem();
-        if (selected != null)
-            System.out.println("Editing task: " + selected.getTitle());
-        else
+        if (selected == null)
             showAlert("No task selected", "Please select a task to edit.");
+        else {
+            // Open a dialog box for task edit
+            boolean saveClicked = showTaskDialog(selected);
+        }
     }
 
     @FXML
@@ -117,7 +108,6 @@ public class MainController {
         Task selected = taskTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
             taskManager.removeTask(selected);
-            taskList.remove(selected);
             updateTotalTasks();
         } else
             showAlert("No task selected", "Please select a task to delete.");
@@ -129,19 +119,27 @@ public class MainController {
         if (selected != null) {
             if (!selected.getIsCompleted()) {
                 taskManager.markComplete(selected);
-                completedTasks++;
                 updateCompletedTasks();
             } else
-                showAlert("Operation failed", "Please select an incomplete task to mark as complete");
+                showAlert("Invalid selection", "Please select an incomplete task to mark as complete");
         } else
             showAlert("No task selected", "Please select a task to mark as complete.");
     }
 
     private void updateTotalTasks() {
-        totalTasksLabel.setText("Total: " + taskList.size());
+        totalTasksLabel.setText("Total: " + taskManager.getTaskList().size());
     }
 
     private void updateCompletedTasks() {
+        // Variable to keep track of completed tasks
+        int completedTasks = 0;
+
+        // Iterate over all tasks in TaskList
+        for (Task task : taskManager.getTaskList()) {
+            if (task.getIsCompleted())
+                completedTasks++; // Increment the counter for each completed task
+        }
+        // Dynamically update the completed tasks label
         completedTasksLabel.setText("Completed: " + completedTasks);
     }
 
@@ -153,7 +151,7 @@ public class MainController {
 
             Stage dialogStage = new Stage();
             // Check if we are adding or editing tasks
-            dialogStage.setTitle(task.getTitle() == "" ? "Add Task" : "Edit Task");
+            dialogStage.setTitle(task.getTitle() == null ? "Add Task" : "Edit Task");
 
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(taskTable.getScene().getWindow());
@@ -176,6 +174,34 @@ public class MainController {
         }
     }
 
+    // Implement a method to show the settings window
+    @FXML
+    private void showSettingsWindow() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("settingsWindow.fxml"));
+            Parent root = loader.load();
+
+            Stage settingStage = new Stage();
+            settingStage.setTitle("Settings");
+
+            settingStage.initModality(Modality.WINDOW_MODAL);
+            settingStage.initOwner(taskTable.getScene().getWindow());
+            settingStage.setScene(new Scene(root));
+
+            SettingsWindowController controller = loader.getController();
+            controller.setSettingStage(settingStage);
+
+            settingStage.showAndWait();
+        } catch (IOException e) {
+            // Handle exception
+            e.printStackTrace();
+        }
+    }
+
+    public TaskManager getTaskManager() {
+        return taskManager;
+    }
+
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -183,5 +209,4 @@ public class MainController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
 }

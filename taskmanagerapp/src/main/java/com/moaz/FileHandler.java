@@ -8,6 +8,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 import java.util.List; // Import the List class
 
@@ -16,7 +19,7 @@ public class FileHandler {
     // Create two methods for saving and loading task data from a JSON file
 
     // Save data:
-    public void saveToFile(List<Task> taskList) {
+    public void saveToFile(ObservableList<Task> taskList) {
         // Create an ObjectMapper object called mapper
         ObjectMapper mapper = new ObjectMapper();
         // Enable pretty printing for formatted output
@@ -36,7 +39,7 @@ public class FileHandler {
     }
 
     // Load data:
-    public List<Task> loadFromFile() {
+    public ObservableList<Task> loadFromFile() {
         // Create an ObjectMapper object called mapper
         ObjectMapper mapper = new ObjectMapper();
 
@@ -44,18 +47,18 @@ public class FileHandler {
         try {
             // Path to JSON file
             File saveFile = new File("tasks.json");
-            // Create a List holding Task objects and read JSON data from save file into it
-            // Use TypeReference to correctly deserialize the JSON array in the form of
-            // List<Task>
+
+            // Deserialize into a List
             List<Task> taskList = mapper.readValue(saveFile, new TypeReference<List<Task>>() {
             });
 
-            return taskList;
+            // Convert List to an ObservableList
+            return FXCollections.observableArrayList(taskList);
         } catch (IOException e) { // Catch any errors during the operation and print the error
             e.printStackTrace();
         }
         // Return an empty list if loading fails
-        return new ArrayList<>();
+        return FXCollections.observableArrayList();
     }
 
 }

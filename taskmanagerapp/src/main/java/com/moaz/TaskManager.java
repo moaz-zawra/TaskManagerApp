@@ -1,11 +1,15 @@
 package com.moaz;
 
+import java.time.Instant;
 import java.util.ArrayList; // Import the ArrayList class
 import java.util.List; // Import the List class
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class TaskManager {
     // Create a task list to store objects of type Task
-    private List<Task> taskList = new ArrayList<>();
+    private ObservableList<Task> taskList = FXCollections.observableArrayList();
 
     // Class methods:
     // Add a given task to the taskList
@@ -25,34 +29,28 @@ public class TaskManager {
 
     // Mark a given task as 'completed'
     public void markComplete(Task task) {
-        task.setIsCompleted();
+        task.setIsCompleted(true);
     }
 
-    // Retrieve each task in the taskList
-    public List<Task> getAllTasks() {
+    // Retrieve the entire taskList
+    public ObservableList<Task> getTaskList() {
         return taskList;
     }
 
     // Save a copy of all the user's tasks to the save file
     public void saveData() {
-        // If the taskList is empty upon saving, print an appropriate message to the
-        // user
-        if (taskList.isEmpty())
-            System.out.println("User did not create any tasks. No available tasks to save");
-        else {
-            // Initialize a FileHandler object called fileHandler
-            FileHandler fileHandler = new FileHandler();
-            // Pass the list of task objects to the method saveToFile
-            fileHandler.saveToFile(taskList);
-        }
+        // Initialize a FileHandler object called fileHandler
+        FileHandler fileHandler = new FileHandler();
+        // Pass the list of task objects to the method saveToFile
+        fileHandler.saveToFile(taskList);
     }
 
     // Load the user's data from the save file
-    public List<Task> loadData() {
+    public ObservableList<Task> loadData() {
         // Initialize a FileHandler object called fileHandler
         FileHandler fileHandler = new FileHandler();
         // Call the loadToFile method using the FileHandler object
-        List<Task> taskList = fileHandler.loadFromFile();
+        ObservableList<Task> taskList = fileHandler.loadFromFile();
         return taskList;
     }
 

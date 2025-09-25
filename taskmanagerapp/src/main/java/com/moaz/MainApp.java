@@ -10,46 +10,26 @@ public class MainApp extends Application {
     public static void main(String[] args) {
 
         launch();
-
-        // Create a TaskManager object
-        /* TaskManager taskManager = new TaskManager(); */
-
-        /*
-         * // Get all tasks from the taskList
-         * taskManager.getAllTasks();
-         * 
-         * // Update the second task
-         * taskManager.updateTask(1, "Pray the remaining prayers");
-         * 
-         * // Mark task 1 as complete
-         * taskManager.markComplete(0);
-         * 
-         * // Display the info about each task - after the changes
-         * taskManager.getAllTasks();
-         * 
-         * // Remove the first task
-         * taskManager.removeTask(0);
-         * 
-         * // Get all tasks from the taskList - after removal of the first task
-         * taskManager.getAllTasks();
-         */
-
-        /*
-         * // Save the user's task data in an external save file
-         * taskManager.saveData();
-         * 
-         * // Load the user's data from the save file
-         * taskManager.loadData();
-         */
     }
 
     @Override
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("mainView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainView.fxml"));
+        Parent root = loader.load();
+
+        MainController controller = loader.getController();
+
         stage.setTitle("Task Manager App");
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.show();
+
+        // Link the save method to be called before the app closes
+        stage.setOnCloseRequest(event -> {
+            // Call the save method when the window is closing
+            controller.getTaskManager().saveData();
+            System.out.println("Tasks saved before closing.");
+        });
     }
 }

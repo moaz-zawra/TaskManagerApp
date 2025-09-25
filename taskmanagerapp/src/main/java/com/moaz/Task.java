@@ -22,7 +22,6 @@ public class Task {
     // Default (no-argument) constructor - used for new object creations made by the
     // Jackson library during the process of loading saved data
     public Task() {
-        this("", "", "", false);
     }
 
     // Parameterized constructor
@@ -91,12 +90,14 @@ public class Task {
             this.categoryProperty = new SimpleStringProperty(category);
     }
 
-    public void setIsCompleted() {
-        this.isCompleted = true;
+    public void setIsCompleted(boolean isCompleted) {
+        this.isCompleted = isCompleted;
         if (this.isCompletedProperty != null)
             this.isCompletedProperty.set(isCompleted);
-        else
+        else {
             this.isCompletedProperty = new SimpleBooleanProperty(isCompleted);
+            this.isCompletedProperty.addListener((obs, oldVal, newVal) -> this.isCompleted = newVal);
+        }
     }
 
     // JavaFx property getters (needed by JavaFX TableView) for MainView table UI
@@ -114,6 +115,11 @@ public class Task {
     }
 
     public BooleanProperty isCompletedProperty() {
+        if (isCompletedProperty == null) {
+            isCompletedProperty = new SimpleBooleanProperty(isCompleted);
+            // Keep field and property in sync
+            isCompletedProperty.addListener((obs, oldVal, newVal) -> this.isCompleted = newVal);
+        }
         return isCompletedProperty;
     }
 
