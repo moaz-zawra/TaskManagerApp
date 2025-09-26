@@ -1,11 +1,8 @@
 package com.moaz;
 
 import java.io.IOException;
-import java.time.Instant;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -153,9 +150,14 @@ public class MainController {
             // Check if we are adding or editing tasks
             dialogStage.setTitle(task.getTitle() == null ? "Add Task" : "Edit Task");
 
+            Scene scene = new Scene(root);
+
+            // Register the scene for automatic theme updates
+            ThemeController.registerScene(scene);
+
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(taskTable.getScene().getWindow());
-            dialogStage.setScene(new Scene(root));
+            dialogStage.setScene(scene);
 
             TaskDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
@@ -184,9 +186,14 @@ public class MainController {
             Stage settingStage = new Stage();
             settingStage.setTitle("Settings");
 
+            Scene scene = new Scene(root);
+
+            // Register the scene for automatic theme updates
+            ThemeController.registerScene(scene);
+
             settingStage.initModality(Modality.WINDOW_MODAL);
             settingStage.initOwner(taskTable.getScene().getWindow());
-            settingStage.setScene(new Scene(root));
+            settingStage.setScene(scene);
 
             SettingsWindowController controller = loader.getController();
             controller.setSettingStage(settingStage);

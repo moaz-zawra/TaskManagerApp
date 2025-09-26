@@ -8,7 +8,6 @@ import javafx.scene.Scene; // Import the JavaFX Scene class
 
 public class MainApp extends Application {
     public static void main(String[] args) {
-
         launch();
     }
 
@@ -22,6 +21,10 @@ public class MainApp extends Application {
 
         stage.setTitle("Task Manager App");
         Scene scene = new Scene(root, 800, 600);
+
+        // Register the scene for automatic theme updates
+        ThemeController.registerScene(scene);
+
         stage.setScene(scene);
         stage.show();
 

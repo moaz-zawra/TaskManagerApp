@@ -8,6 +8,7 @@ module com.moaz {
     requires com.fasterxml.jackson.annotation;
     requires javafx.graphics;
     requires javafx.base;
+    requires java.prefs;
 
     // Allow reflection for FXML and serialization
     opens com.moaz to javafx.fxml, javafx.base, com.fasterxml.jackson.databind;

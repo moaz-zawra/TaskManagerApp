@@ -1,0 +1,26 @@
+/* CSS styling for the applications's dark mode */
+
+.root {
+  -fx-base: #2b2b2b;
+  -fx-background-color: #2b2b2b;
+  -fx-text-fill: white;
+}
+
+.label {
+  -fx-text-fill: white;
+}
+
+.button {
+  -fx-background-color: #444;
+  -fx-text-fill: white;
+}
+
+.text-field {
+  -fx-background-color: #333;
+  -fx-text-fill: white;
+  -fx-prompt-text-fill: #aaaaaa;
+}
+
+.check-box {
+  -fx-text-fill: white;
+}
