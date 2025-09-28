@@ -85,7 +85,6 @@ public class MainController {
             taskManager.addTask(newTask);
             updateTotalTasks();
         }
-        System.out.println("Add Task button clicked!");
     }
 
     @FXML

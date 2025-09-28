@@ -53,8 +53,13 @@ public class SettingsWindowController {
 
     @FXML
     private void handleCancel() {
-        // Revert the user's theme selection on cancel
-        darkModeCheckBox.setSelected(!ThemeController.isDarkModeEnabled());
-        settingStage.close();
+        // If the current theme is the same as the last saved theme, no change occurred
+        if (ThemeController.isDarkModeEnabled() == loadDarkMode())
+            settingStage.close();
+        else {
+            // Revert the theme on cancel and close the dialog
+            ThemeController.setDarkMode(!ThemeController.isDarkModeEnabled());
+            settingStage.close();
+        }
     }
 }

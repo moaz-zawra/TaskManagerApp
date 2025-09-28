@@ -32,7 +32,6 @@ public class MainApp extends Application {
         stage.setOnCloseRequest(event -> {
             // Call the save method when the window is closing
             controller.getTaskManager().saveData();
-            System.out.println("Tasks saved before closing.");
         });
     }
 }

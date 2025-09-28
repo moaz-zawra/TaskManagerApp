@@ -9,8 +9,7 @@ public class ThemeController {
     private static final String darkMode = ThemeController.class.getResource("dark-mode.css").toExternalForm();
     private static final List<Scene> registeredScenes = new ArrayList<>();
 
-    // Set the initial state of dark mode based on the loaded user preference from
-    // settings
+    // Set the initial state of dark mode to false
     private static boolean darkModeEnabled = SettingsWindowController.loadDarkMode();
 
     // Register a scene so it updates when the theme changes
