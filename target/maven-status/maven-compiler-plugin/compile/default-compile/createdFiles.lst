@@ -1,0 +1,10 @@
+com\moaz\taskmanager\model\FileHandler.class
+com\moaz\taskmanager\controller\TaskDialogController.class
+com\moaz\taskmanager\MainApp.class
+com\moaz\taskmanager\model\Task.class
+com\moaz\taskmanager\model\TaskServices.class
+com\moaz\taskmanager\controller\SettingsWindowController.class
+com\moaz\taskmanager\controller\ThemeController.class
+com\moaz\taskmanager\controller\MainController.class
+module-info.class
+com\moaz\taskmanager\model\FileHandler$1.class
