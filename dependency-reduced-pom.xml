@@ -69,7 +69,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <moduleName>com.moaz.taskmanager</moduleName>
-    <javafx.version>23.0.1</javafx.version>
+    <javafx.version>25</javafx.version>
     <mainClass>com.moaz.taskmanager.MainApp</mainClass>
   </properties>
 </project>

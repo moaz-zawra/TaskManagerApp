@@ -187,7 +187,6 @@ public class MainController {
             Parent root = loader.load();
 
             Stage settingStage = new Stage();
-            settingStage.setTitle("Settings");
 
             Scene scene = new Scene(root);
 

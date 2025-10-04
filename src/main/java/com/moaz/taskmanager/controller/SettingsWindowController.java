@@ -3,22 +3,28 @@ package com.moaz.taskmanager.controller;
 import java.util.prefs.Preferences;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
 
 public class SettingsWindowController {
 
-    // FXML variable for the CheckBox
+    // FXML variable for the ToggleButton
     @FXML
-    private CheckBox darkModeCheckBox;
+    private ToggleButton themeToggle;
 
     @FXML
     public void initialize() {
-        // Set initial state for the dark mode toggle
-        darkModeCheckBox.setSelected(ThemeController.isDarkModeEnabled());
+        // Set initial state for the theme toggle
+        themeToggle.setSelected(ThemeController.isDarkModeEnabled());
+
+        // Set theme icon depending if dark mode is enabled
+        if (ThemeController.isDarkModeEnabled())
+            themeToggle.setText("🌙"); // dark mode icon
+        else
+            themeToggle.setText("🌞"); // light mode icon
 
         // Listen for toggle changes
-        darkModeCheckBox.selectedProperty().addListener((obs, wasSelected, isSelected) -> {
+        themeToggle.selectedProperty().addListener((obs, wasSelected, isSelected) -> {
             ThemeController.setDarkMode(isSelected);
         });
     }
@@ -42,6 +48,15 @@ public class SettingsWindowController {
     // Create a method to load dark mode settings
     public static boolean loadDarkMode() {
         return userPrefs.getBoolean("darkMode", false); // Default: false
+    }
+
+    @FXML
+    private void changeThemeIcon() {
+        // Set theme icon depending if dark mode is enabled
+        if (ThemeController.isDarkModeEnabled())
+            themeToggle.setText("🌙"); // dark mode icon
+        else
+            themeToggle.setText("🌞"); // light mode icon
     }
 
     @FXML

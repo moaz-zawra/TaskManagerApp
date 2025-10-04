@@ -21,7 +21,6 @@ public class MainApp extends Application {
 
         MainController controller = loader.getController();
 
-        stage.setTitle("Task Manager App");
         Scene scene = new Scene(root, 800, 600);
 
         // Register the scene for automatic theme updates

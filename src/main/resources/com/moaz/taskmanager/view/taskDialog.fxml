@@ -5,22 +5,44 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-   minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" spacing="10.0"
-   xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1"
-   fx:controller="com.moaz.taskmanager.controller.TaskDialogController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" spacing="10.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moaz.taskmanager.controller.TaskDialogController">
    <children>
-      <Label text="Task Title:" />
-      <TextField fx:id="titleField" />
-      <Label text="Task Description:" />
-      <TextField fx:id="descriptionField" />
-      <Label text="Task Category:" />
-      <TextField fx:id="categoryField" />
+      <Label text="Task Title:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <TextField fx:id="titleField">
+         <font>
+            <Font size="13.0" />
+         </font></TextField>
+      <Label text="Task Description:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <TextField fx:id="descriptionField">
+         <font>
+            <Font size="13.0" />
+         </font></TextField>
+      <Label text="Task Category:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <TextField fx:id="categoryField">
+         <font>
+            <Font size="13.0" />
+         </font></TextField>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#handleSave" text="Save" />
-            <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+            <Button mnemonicParsing="false" onAction="#handleSave" text="Save">
+               <font>
+                  <Font size="13.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancel">
+               <font>
+                  <Font size="13.0" />
+               </font></Button>
          </children>
       </HBox>
    </children>
