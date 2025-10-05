@@ -21,7 +21,7 @@ public class SettingsWindowController {
         if (ThemeController.isDarkModeEnabled())
             themeToggle.setText("🌙"); // dark mode icon
         else
-            themeToggle.setText("🌞"); // light mode icon
+            themeToggle.setText("☀"); // light mode icon
 
         // Listen for toggle changes
         themeToggle.selectedProperty().addListener((obs, wasSelected, isSelected) -> {
@@ -56,7 +56,7 @@ public class SettingsWindowController {
         if (ThemeController.isDarkModeEnabled())
             themeToggle.setText("🌙"); // dark mode icon
         else
-            themeToggle.setText("🌞"); // light mode icon
+            themeToggle.setText("☀"); // light mode icon
     }
 
     @FXML

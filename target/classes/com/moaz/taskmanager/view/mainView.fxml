@@ -15,12 +15,17 @@
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Task Manager App">
+            <Label text="TaskNest">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></Label>
+            <Label text="Your organized hub for all tasks" textFill="GREY">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onAction="#showSettingsWindow" text="Settings">
+            <Button mnemonicParsing="false" onAction="#showSettingsWindow" text="⚙">
                <font>
                   <Font size="13.0" />
                </font></Button>
@@ -51,7 +56,7 @@
                      <font>
                         <Font size="13.0" />
                      </font></Button>
-                  <Button fx:id="editTaskButton" mnemonicParsing="false" onAction="#onEditTask" text="✎ Edit Task">
+                  <Button fx:id="editTaskButton" mnemonicParsing="false" onAction="#onEditTask" text="✏ Edit Task">
                      <font>
                         <Font size="13.0" />
                      </font></Button>
