@@ -121,7 +121,6 @@ TaskNest offers both a light and a dark theme for user comfort.
 *   **Views**: The UI is defined using FXML files, which separates the layout from the application logic.
 *   **Controllers**: Each FXML view has a corresponding controller class that manages user input and updates the view.
 *   **Model**: The `Task` class uses JavaFX Properties (`StringProperty`, `BooleanProperty`) to allow the UI to automatically update when the underlying data changes. The `TaskServices` class acts as a facade for managing the collection of tasks.
-    ```
 
 ## 📄 License
 
