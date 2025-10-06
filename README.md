@@ -122,6 +122,23 @@ TaskNest offers both a light and a dark theme for user comfort.
 *   **Controllers**: Each FXML view has a corresponding controller class that manages user input and updates the view.
 *   **Model**: The `Task` class uses JavaFX Properties (`StringProperty`, `BooleanProperty`) to allow the UI to automatically update when the underlying data changes. The `TaskServices` class acts as a facade for managing the collection of tasks.
 
+## 📸 Screenshots
+
+### 🌙 Dark Mode
+![TaskNest Dark Mode](assets/TaskNest_1.jpg)
+
+### ☀️ Light Mode
+![TaskNest Light Mode](assets/TaskNest_2.jpg)
+
+### ➕ Task Creation
+![TaskNest Task Creation](assets/TaskNest_3.jpg)
+
+### 📋 Task Viewing
+![TaskNest Example Task](assets/TaskNest_4.jpg)
+
+### ✅ Marking Tasks as Completed
+![TaskNest Task Completion](assets/TaskNest_5.jpg)
+
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
