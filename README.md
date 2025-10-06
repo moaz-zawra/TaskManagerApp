@@ -16,17 +16,20 @@ TaskNest is a simple, intuitive desktop task management application built with J
 
 ## 🛠️ Technologies Used
 
-*   **Java**: Core application language.
-*   **JavaFX**: Framework for the graphical user interface.
+*   **Java 25**: Core application language.
+*   **JavaFX 25**: Framework for the graphical user interface.
 *   **Maven**: For project build management and dependencies.
 *   **Jackson**: For serializing and deserializing task data to/from JSON format.
+*   **Java Preferences API**: For storing user's theme preferences between sessions.
+*   **CSS**: For customizing and implementing light and dark modes.
 
 ## ⚙️ Getting Started
 
 ### Prerequisites
 
-*   Java Development Kit (JDK) 21 or newer.
-*   Apache Maven.
+*   Java Development Kit (JDK) 25 or newer.
+*   Apache Maven 3.6 or newer.
+*   JavaFX SDK 25 or newer.
 
 ### Running the Application
 
@@ -67,19 +70,29 @@ The project follows a standard Maven layout with an MVC-like pattern for the app
 ```
 .
 ├── executables/
-│   └── taskmanager-shaded.jar  # Pre-packaged runnable application
-├── src/
-│   └── main/
-│       ├── java/com/moaz/taskmanager/
-│       │   ├── MainApp.java            # Main entry point for the JavaFX application
-│       │   ├── controller/             # Handles UI logic and user interactions
-│       │   ├── model/                  # Contains data models and business logic (Task, FileHandler)
-│       │   └── utils/                  # Utility classes for data management
-│       └── resources/com/moaz/taskmanager/
-│           ├── view/                   # FXML files defining the UI structure
-│           ├── dark-mode.css           # Stylesheet for the dark theme
-│           └── light-mode.css          # Stylesheet for the light theme
-└── pom.xml                             # Maven project configuration
+│   └── taskmanager-shaded.jar      # Pre-packaged runnable application
+├── src/main/java/com/moaz/taskmanager/
+├── MainApp.java                    # Application entry point
+├── controller/                     # UI controllers
+│   ├── MainController.java
+│   ├── TaskDialogController.java
+│   ├── SettingsWindowController.java
+│   └── ThemeController.java
+├── model/                          # Data models and business logic
+│   ├── Task.java
+│   ├── TaskServices.java
+│   └── FileHandler.java
+└── utils/                          # Utility classes
+│    └── DataUtils.java
+│
+├── src/main/resources/com/moaz/taskmanager/view/
+├── mainView.fxml                   # Main window layout
+├── taskDialog.fxml                 # Task dialog layout
+├── settingsWindow.fxml             # Settings window layout
+├── dark-mode.css                   # Dark theme stylesheet
+└── light-mode.css                  # Light theme stylesheet
+│
+└── pom.xml                         # Maven project configuration
 ```
 
 ## 📖 How It Works
@@ -108,8 +121,7 @@ TaskNest offers both a light and a dark theme for user comfort.
 *   **Views**: The UI is defined using FXML files, which separates the layout from the application logic.
 *   **Controllers**: Each FXML view has a corresponding controller class that manages user input and updates the view.
 *   **Model**: The `Task` class uses JavaFX Properties (`StringProperty`, `BooleanProperty`) to allow the UI to automatically update when the underlying data changes. The `TaskServices` class acts as a facade for managing the collection of tasks.
-
----
+    ```
 
 ## 📄 License
 
