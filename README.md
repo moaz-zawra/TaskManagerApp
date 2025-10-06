@@ -22,6 +22,8 @@ TaskNest is a simple, intuitive desktop task management application built with J
 *   **Jackson**: For serializing and deserializing task data to/from JSON format.
 *   **Java Preferences API**: For storing user's theme preferences between sessions.
 *   **CSS**: For customizing and implementing light and dark modes.
+*   **JavaFX Scene Builder**: For designing and creating user interfaces (UIs) for main and secondary views.
+*   **Launch4j**: For wrapping the application's shaded jar into a lightweight Windows native executable (.exe file).
 
 ## ⚙️ Getting Started
 
