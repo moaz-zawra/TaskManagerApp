@@ -1,4 +1,0 @@
---patch-module
-com.moaz.taskmanager=_
---add-reads
-com.moaz.taskmanager=ALL-UNNAMED
